@@ -1,9 +1,15 @@
 module View exposing ( view )
 
+-------------------------
+-- External dependencies
+-------------------------
 import Html exposing ( .. )
 import Html.Attributes exposing ( .. )
 import Html.Events exposing ( .. )
 
+-------------------------
+-- Internal dependencies
+-------------------------
 import Model exposing ( .. )
 
 view : AppState -> Html Msg
