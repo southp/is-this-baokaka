@@ -15,7 +15,7 @@ import Json.Decode as Json
 import Model exposing ( .. )
 
 init : ( AppState, Cmd Msg )
-init = ( AppState "" 0, Cmd.none )
+init = ( AppState "" Nothing, Cmd.none )
 
 update : Msg -> AppState -> ( AppState, Cmd Msg )
 update msg state =
@@ -23,9 +23,8 @@ update msg state =
         NoOp -> ( state, Cmd.none )
         UpdateQueryString newQueryString -> ( { state | queryString = newQueryString }, Cmd.none )
         SubmitQuery -> ( state, submitQuery state.queryString )
-        QuerySucceed items -> ( state, Cmd.none )
+        QuerySucceed items -> ( { state | queryResult = Just items }, Cmd.none )
         QueryFail error -> ( state, Cmd.none )
-
 
 postApi : String -> String
 postApi query = "https://public-api.wordpress.com/rest/v1.1/sites/isthisbaokaka.wordpress.com/posts?fields=title&search=" ++ query
@@ -42,4 +41,4 @@ submitQuery queryString =
 
 decodePostQueryResponse : Json.Decoder ( List String )
 decodePostQueryResponse =
-    Json.at [ "posts" ] ( Json.list Json.string )
+    Json.at [ "posts", "title" ] ( Json.list Json.string )

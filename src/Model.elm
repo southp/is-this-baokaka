@@ -7,7 +7,7 @@ import Http
 
 type alias AppState =
     { queryString : String
-    , queryStatus : Int
+    , queryResult : Maybe ( List String )
     }
 
 type Msg =
