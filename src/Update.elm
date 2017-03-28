@@ -27,8 +27,8 @@ update msg state =
         QueryFail error -> ( state, Cmd.none )
 
 
-postApi : String
-postApi = "https://public-api.wordpress.com/rest/v1.1/sites/isthisbaokaka.wordpress.com/posts"
+postApi : String -> String
+postApi query = "https://public-api.wordpress.com/rest/v1.1/sites/isthisbaokaka.wordpress.com/posts?fields=title&search=" ++ query
 
 submitQuery : String -> Cmd Msg
 submitQuery queryString =
@@ -38,7 +38,7 @@ submitQuery queryString =
                 Ok items -> QuerySucceed items
                 Err error -> QueryFail error
     in
-        Http.send processResult ( Http.get postApi decodePostQueryResponse )
+        Http.send processResult ( Http.get ( postApi queryString ) decodePostQueryResponse )
 
 decodePostQueryResponse : Json.Decoder ( List String )
 decodePostQueryResponse =
