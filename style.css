@@ -31,3 +31,11 @@ body {
     font-size: 24px;
     margin-top: 8px;
 }
+
+.isthisbaokaka__positive-result-text {
+    color: #dd1111;
+}
+
+.isthisbaokaka__negative-result-text {
+    color: #12dddd;
+}

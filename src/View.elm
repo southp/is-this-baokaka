@@ -39,14 +39,14 @@ positiveResult : Html Msg
 positiveResult =
     div [ class "isthisbaokaka__result-wrapper" ]
     [
-       h3 [ class "isthisbaokaka__positive-result-text" ] [ text "此等霸氣，寶卡卡無誤！" ]
+       h3 [ class "isthisbaokaka__positive-result-text" ] [ text "霸氣外露，寶卡卡無誤！" ]
     ]
 
 negativeResult : Html Msg
 negativeResult =
     div [ class "isthisbaokaka__result-wrapper" ]
     [
-        h3 [ class "isthisbaokaka__negative-result-text" ] [ text "應該不是，但所謂寶卡狡兔三窟，不妨再確認一下" ]
+        h3 [ class "isthisbaokaka__negative-result-text" ] [ text "可能不是，但不妨再確認一下" ]
     ]
 
 resultSection : AppState -> Html Msg
