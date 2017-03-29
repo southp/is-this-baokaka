@@ -37,5 +37,9 @@ body {
 }
 
 .isthisbaokaka__negative-result-text {
-    color: #12dddd;
+    color: #01b468;
+}
+
+.isthisbaokaka__main-button {
+    border-radius: 4px;
 }

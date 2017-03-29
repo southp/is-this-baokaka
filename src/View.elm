@@ -39,14 +39,20 @@ positiveResult : Html Msg
 positiveResult =
     div [ class "isthisbaokaka__result-wrapper" ]
     [
-       h3 [ class "isthisbaokaka__positive-result-text" ] [ text "霸氣外露，寶卡卡無誤！" ]
+       h3 [ class "isthisbaokaka__positive-result-text" ] [ text "㊗️ 霸氣外露，寶卡卡無誤 ㊗️" ]
     ]
 
-negativeResult : Html Msg
-negativeResult =
+negativeResult : String -> Html Msg
+negativeResult queryString =
     div [ class "isthisbaokaka__result-wrapper" ]
     [
-        h3 [ class "isthisbaokaka__negative-result-text" ] [ text "可能不是，但不妨再確認一下" ]
+        h3 [ class "isthisbaokaka__negative-result-text" ]
+        [ text "可能不是，但不妨再"
+        , a [ href ( "https://www.google.com.tw/#q=" ++ queryString )
+            , target "__blank"
+            , rel "noopener noreferrer" ] [ text "Google" ]
+        , text "一下"
+        ]
     ]
 
 resultSection : AppState -> Html Msg
@@ -56,5 +62,5 @@ resultSection { queryString, queryResult } =
             if List.member queryString items then
                 positiveResult
             else
-                negativeResult
+                negativeResult queryString
         Nothing -> div [] []
