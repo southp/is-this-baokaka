@@ -50,10 +50,10 @@ negativeResult =
     ]
 
 resultSection : AppState -> Html Msg
-resultSection { queryResult } =
+resultSection { queryString, queryResult } =
     case queryResult of
         Just items ->
-            if List.length items > 0 then
+            if List.member queryString items then
                 positiveResult
             else
                 negativeResult

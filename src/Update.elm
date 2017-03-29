@@ -41,4 +41,4 @@ submitQuery queryString =
 
 decodePostQueryResponse : Json.Decoder ( List String )
 decodePostQueryResponse =
-    Json.at [ "posts", "title" ] ( Json.list Json.string )
+    Json.at [ "posts" ] ( Json.list ( Json.field "title" Json.string ) )
