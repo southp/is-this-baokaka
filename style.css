@@ -34,10 +34,12 @@ body {
 
 .isthisbaokaka__positive-result-text {
     color: #dd1111;
+    text-align: center;
 }
 
 .isthisbaokaka__negative-result-text {
     color: #01b468;
+    text-align: center;
 }
 
 .isthisbaokaka__main-button {
