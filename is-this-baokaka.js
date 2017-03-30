@@ -9068,52 +9068,67 @@ var _user$project$View$negativeResult = function (queryString) {
 				},
 				{
 					ctor: '::',
-					_0: _elm_lang$html$Html$text('🤖真可惜，應該不是喔🤖'),
+					_0: _elm_lang$html$Html$text('🤖真可惜🤖'),
 					_1: {ctor: '[]'}
 				}),
 			_1: {
 				ctor: '::',
 				_0: A2(
-					_elm_lang$html$Html$p,
+					_elm_lang$html$Html$h3,
 					{
 						ctor: '::',
-						_0: _elm_lang$html$Html_Attributes$class('isthisbaokaka__negative-result-description'),
+						_0: _elm_lang$html$Html_Attributes$class('isthisbaokaka__negative-result-text'),
 						_1: {ctor: '[]'}
 					},
 					{
 						ctor: '::',
-						_0: _elm_lang$html$Html$text('不甘心？'),
-						_1: {
+						_0: _elm_lang$html$Html$text('🤖應該不是喔🤖'),
+						_1: {ctor: '[]'}
+					}),
+				_1: {
+					ctor: '::',
+					_0: A2(
+						_elm_lang$html$Html$p,
+						{
 							ctor: '::',
-							_0: A2(
-								_elm_lang$html$Html$a,
-								{
-									ctor: '::',
-									_0: _elm_lang$html$Html_Attributes$href(
-										A2(_elm_lang$core$Basics_ops['++'], 'https://www.google.com.tw/#q=', queryString)),
-									_1: {
-										ctor: '::',
-										_0: _elm_lang$html$Html_Attributes$target('__blank'),
-										_1: {
-											ctor: '::',
-											_0: _elm_lang$html$Html_Attributes$rel('noopener noreferrer'),
-											_1: {ctor: '[]'}
-										}
-									}
-								},
-								{
-									ctor: '::',
-									_0: _elm_lang$html$Html$text('Google'),
-									_1: {ctor: '[]'}
-								}),
+							_0: _elm_lang$html$Html_Attributes$class('isthisbaokaka__negative-result-description'),
+							_1: {ctor: '[]'}
+						},
+						{
+							ctor: '::',
+							_0: _elm_lang$html$Html$text('不甘心？'),
 							_1: {
 								ctor: '::',
-								_0: _elm_lang$html$Html$text('確認一下！'),
-								_1: {ctor: '[]'}
+								_0: A2(
+									_elm_lang$html$Html$a,
+									{
+										ctor: '::',
+										_0: _elm_lang$html$Html_Attributes$href(
+											A2(_elm_lang$core$Basics_ops['++'], 'https://www.google.com.tw/#q=', queryString)),
+										_1: {
+											ctor: '::',
+											_0: _elm_lang$html$Html_Attributes$target('__blank'),
+											_1: {
+												ctor: '::',
+												_0: _elm_lang$html$Html_Attributes$rel('noopener noreferrer'),
+												_1: {ctor: '[]'}
+											}
+										}
+									},
+									{
+										ctor: '::',
+										_0: _elm_lang$html$Html$text('Google'),
+										_1: {ctor: '[]'}
+									}),
+								_1: {
+									ctor: '::',
+									_0: _elm_lang$html$Html$text('確認一下！'),
+									_1: {ctor: '[]'}
+								}
 							}
-						}
-					}),
-				_1: {ctor: '[]'}
+						}),
+					_1: {ctor: '[]'}
+				}
 			}
 		});
 };
