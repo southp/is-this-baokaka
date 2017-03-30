@@ -9215,30 +9215,7 @@ var _user$project$View$view = function (_p4) {
 								}
 							},
 							{ctor: '[]'}),
-						_1: {
-							ctor: '::',
-							_0: A2(
-								_elm_lang$html$Html$button,
-								{
-									ctor: '::',
-									_0: _elm_lang$html$Html_Attributes$class('isthisbaokaka__main-button'),
-									_1: {
-										ctor: '::',
-										_0: _elm_lang$html$Html_Events$onClick(_user$project$Model$SubmitQuery),
-										_1: {
-											ctor: '::',
-											_0: _elm_lang$html$Html_Attributes$type_('submit'),
-											_1: {ctor: '[]'}
-										}
-									}
-								},
-								{
-									ctor: '::',
-									_0: _elm_lang$html$Html$text('好緊張喔...'),
-									_1: {ctor: '[]'}
-								}),
-							_1: {ctor: '[]'}
-						}
+						_1: {ctor: '[]'}
 					}),
 				_1: {
 					ctor: '::',
