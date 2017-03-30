@@ -30,13 +30,7 @@ view ( { queryString, queryResult } as state ) =
             , placeholder "請輸入建商大名..."
             , autofocus True
             , onInput UpdateQueryString
-            ] [],
-
-            button
-            [ class "isthisbaokaka__main-button"
-            , onClick SubmitQuery
-            , type_ "submit"
-            ] [ text "好緊張喔..." ]
+            ] []
         ],
 
         resultSection state
