@@ -21,7 +21,7 @@ update : Msg -> AppState -> ( AppState, Cmd Msg )
 update msg state =
     case msg of
         NoOp -> ( state, Cmd.none )
-        UpdateQueryString newQueryString -> ( { state | queryString = newQueryString }, Cmd.none )
+        UpdateQueryString newQueryString -> ( { state | queryString = newQueryString, queryResult = Nothing }, Cmd.none )
         SubmitQuery -> ( state, submitQuery state.queryString )
         QuerySucceed items -> ( { state | queryResult = Just items }, Cmd.none )
         QueryFail error -> ( state, Cmd.none )
