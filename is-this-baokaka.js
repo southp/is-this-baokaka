@@ -9259,7 +9259,7 @@ var _user$project$Update$decodePostQueryResponse = A2(
 	_elm_lang$core$Json_Decode$list(
 		A2(_elm_lang$core$Json_Decode$field, 'title', _elm_lang$core$Json_Decode$string)));
 var _user$project$Update$postApi = function (query) {
-	return A2(_elm_lang$core$Basics_ops['++'], 'https://public-api.wordpress.com/rest/v1.1/sites/isthisbaokaka.wordpress.com/posts?fields=title&search=', query);
+	return A2(_elm_lang$core$Basics_ops['++'], 'https://public-api.wordpress.com/rest/v1.1/sites/isthisbaokaka.wordpress.com/posts?fields=title&exclude=92&search=', query);
 };
 var _user$project$Update$submitQuery = function (queryString) {
 	var processResult = function (result) {
