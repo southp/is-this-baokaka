@@ -40,14 +40,16 @@ positiveResult : Html Msg
 positiveResult =
     div [ class "isthisbaokaka__result-wrapper" ]
     [
-       h3 [ class "isthisbaokaka__positive-result-text" ] [ text "㊗️ 霸氣外露，寶卡卡無誤 ㊗️" ]
+       h3 [ class "isthisbaokaka__positive-result-text" ][ text "㊗️ 霸氣外露 ㊗️" ],
+       h3 [ class "isthisbaokaka__positive-result-text" ][ text "㊗️ 寶卡無雙 ㊗️" ]
     ]
 
 negativeResult : String -> Html Msg
 negativeResult queryString =
     div [ class "isthisbaokaka__result-wrapper" ]
     [
-        h3 [ class "isthisbaokaka__negative-result-text" ] [ text "🤖真可惜，應該不是喔🤖" ],
+        h3 [ class "isthisbaokaka__negative-result-text" ] [ text "🤖真可惜🤖" ],
+        h3 [ class "isthisbaokaka__negative-result-text" ] [ text "🤖應該不是喔🤖" ],
         p [ class "isthisbaokaka__negative-result-description" ]
         [ text "不甘心？"
         , a [ href ( "https://www.google.com.tw/#q=" ++ queryString )
