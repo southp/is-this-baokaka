@@ -53,12 +53,13 @@ negativeResult : String -> Html Msg
 negativeResult queryString =
     div [ class "isthisbaokaka__result-wrapper" ]
     [
-        h3 [ class "isthisbaokaka__negative-result-text" ]
-        [ text "可能不是，但不妨再"
+        h3 [ class "isthisbaokaka__negative-result-text" ] [ text "🤖真可惜，應該不是喔🤖" ],
+        p [ class "isthisbaokaka__negative-result-description" ]
+        [ text "不甘心？"
         , a [ href ( "https://www.google.com.tw/#q=" ++ queryString )
             , target "__blank"
             , rel "noopener noreferrer" ] [ text "Google" ]
-        , text "一下"
+        , text "確認一下！"
         ]
     ]
 
