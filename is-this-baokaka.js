@@ -9049,29 +9049,74 @@ var _user$project$Model$UpdateQueryString = function (a) {
 };
 var _user$project$Model$NoOp = {ctor: 'NoOp'};
 
-var _user$project$View$negativeResult = A2(
-	_elm_lang$html$Html$div,
-	{
-		ctor: '::',
-		_0: _elm_lang$html$Html_Attributes$class('isthisbaokaka__result-wrapper'),
-		_1: {ctor: '[]'}
-	},
-	{
-		ctor: '::',
-		_0: A2(
-			_elm_lang$html$Html$h3,
-			{
+var _user$project$View$negativeResult = function (queryString) {
+	return A2(
+		_elm_lang$html$Html$div,
+		{
+			ctor: '::',
+			_0: _elm_lang$html$Html_Attributes$class('isthisbaokaka__result-wrapper'),
+			_1: {ctor: '[]'}
+		},
+		{
+			ctor: '::',
+			_0: A2(
+				_elm_lang$html$Html$h3,
+				{
+					ctor: '::',
+					_0: _elm_lang$html$Html_Attributes$class('isthisbaokaka__negative-result-text'),
+					_1: {ctor: '[]'}
+				},
+				{
+					ctor: '::',
+					_0: _elm_lang$html$Html$text('🤖真可惜，應該不是喔🤖'),
+					_1: {ctor: '[]'}
+				}),
+			_1: {
 				ctor: '::',
-				_0: _elm_lang$html$Html_Attributes$class('isthisbaokaka__negative-result-text'),
+				_0: A2(
+					_elm_lang$html$Html$p,
+					{
+						ctor: '::',
+						_0: _elm_lang$html$Html_Attributes$class('isthisbaokaka__negative-result-description'),
+						_1: {ctor: '[]'}
+					},
+					{
+						ctor: '::',
+						_0: _elm_lang$html$Html$text('不甘心？'),
+						_1: {
+							ctor: '::',
+							_0: A2(
+								_elm_lang$html$Html$a,
+								{
+									ctor: '::',
+									_0: _elm_lang$html$Html_Attributes$href(
+										A2(_elm_lang$core$Basics_ops['++'], 'https://www.google.com.tw/#q=', queryString)),
+									_1: {
+										ctor: '::',
+										_0: _elm_lang$html$Html_Attributes$target('__blank'),
+										_1: {
+											ctor: '::',
+											_0: _elm_lang$html$Html_Attributes$rel('noopener noreferrer'),
+											_1: {ctor: '[]'}
+										}
+									}
+								},
+								{
+									ctor: '::',
+									_0: _elm_lang$html$Html$text('Google'),
+									_1: {ctor: '[]'}
+								}),
+							_1: {
+								ctor: '::',
+								_0: _elm_lang$html$Html$text('確認一下！'),
+								_1: {ctor: '[]'}
+							}
+						}
+					}),
 				_1: {ctor: '[]'}
-			},
-			{
-				ctor: '::',
-				_0: _elm_lang$html$Html$text('應該不是，但所謂寶卡狡兔三窟，不妨再確認一下'),
-				_1: {ctor: '[]'}
-			}),
-		_1: {ctor: '[]'}
-	});
+			}
+		});
+};
 var _user$project$View$positiveResult = A2(
 	_elm_lang$html$Html$div,
 	{
@@ -9090,18 +9135,17 @@ var _user$project$View$positiveResult = A2(
 			},
 			{
 				ctor: '::',
-				_0: _elm_lang$html$Html$text('此等霸氣，寶卡卡無誤！'),
+				_0: _elm_lang$html$Html$text('㊗️ 霸氣外露，寶卡卡無誤 ㊗️'),
 				_1: {ctor: '[]'}
 			}),
 		_1: {ctor: '[]'}
 	});
 var _user$project$View$resultSection = function (_p0) {
 	var _p1 = _p0;
+	var _p3 = _p1.queryString;
 	var _p2 = _p1.queryResult;
 	if (_p2.ctor === 'Just') {
-		return (_elm_lang$core$Native_Utils.cmp(
-			_elm_lang$core$List$length(_p2._0),
-			0) > 0) ? _user$project$View$positiveResult : _user$project$View$negativeResult;
+		return A2(_elm_lang$core$List$member, _p3, _p2._0) ? _user$project$View$positiveResult : _user$project$View$negativeResult(_p3);
 	} else {
 		return A2(
 			_elm_lang$html$Html$div,
@@ -9109,8 +9153,8 @@ var _user$project$View$resultSection = function (_p0) {
 			{ctor: '[]'});
 	}
 };
-var _user$project$View$view = function (_p3) {
-	var _p4 = _p3;
+var _user$project$View$view = function (_p4) {
+	var _p5 = _p4;
 	return A2(
 		_elm_lang$html$Html$div,
 		{
@@ -9135,48 +9179,71 @@ var _user$project$View$view = function (_p3) {
 			_1: {
 				ctor: '::',
 				_0: A2(
-					_elm_lang$html$Html$input,
+					_elm_lang$html$Html$form,
 					{
 						ctor: '::',
-						_0: _elm_lang$html$Html_Attributes$class('isthisbaokaka__input-text-field'),
+						_0: _elm_lang$html$Html_Attributes$action('#'),
 						_1: {
 							ctor: '::',
-							_0: _elm_lang$html$Html_Attributes$type_('text'),
-							_1: {
-								ctor: '::',
-								_0: _elm_lang$html$Html_Attributes$placeholder('請輸入建商大名...'),
-								_1: {
-									ctor: '::',
-									_0: _elm_lang$html$Html_Events$onInput(_user$project$Model$UpdateQueryString),
-									_1: {ctor: '[]'}
-								}
-							}
+							_0: _elm_lang$html$Html_Events$onSubmit(_user$project$Model$SubmitQuery),
+							_1: {ctor: '[]'}
 						}
 					},
-					{ctor: '[]'}),
+					{
+						ctor: '::',
+						_0: A2(
+							_elm_lang$html$Html$input,
+							{
+								ctor: '::',
+								_0: _elm_lang$html$Html_Attributes$class('isthisbaokaka__input-text-field'),
+								_1: {
+									ctor: '::',
+									_0: _elm_lang$html$Html_Attributes$type_('text'),
+									_1: {
+										ctor: '::',
+										_0: _elm_lang$html$Html_Attributes$placeholder('請輸入建商大名...'),
+										_1: {
+											ctor: '::',
+											_0: _elm_lang$html$Html_Attributes$autofocus(true),
+											_1: {
+												ctor: '::',
+												_0: _elm_lang$html$Html_Events$onInput(_user$project$Model$UpdateQueryString),
+												_1: {ctor: '[]'}
+											}
+										}
+									}
+								}
+							},
+							{ctor: '[]'}),
+						_1: {
+							ctor: '::',
+							_0: A2(
+								_elm_lang$html$Html$button,
+								{
+									ctor: '::',
+									_0: _elm_lang$html$Html_Attributes$class('isthisbaokaka__main-button'),
+									_1: {
+										ctor: '::',
+										_0: _elm_lang$html$Html_Events$onClick(_user$project$Model$SubmitQuery),
+										_1: {
+											ctor: '::',
+											_0: _elm_lang$html$Html_Attributes$type_('submit'),
+											_1: {ctor: '[]'}
+										}
+									}
+								},
+								{
+									ctor: '::',
+									_0: _elm_lang$html$Html$text('好緊張喔...'),
+									_1: {ctor: '[]'}
+								}),
+							_1: {ctor: '[]'}
+						}
+					}),
 				_1: {
 					ctor: '::',
-					_0: A2(
-						_elm_lang$html$Html$button,
-						{
-							ctor: '::',
-							_0: _elm_lang$html$Html_Attributes$class('isthisbaokaka__main-button'),
-							_1: {
-								ctor: '::',
-								_0: _elm_lang$html$Html_Events$onClick(_user$project$Model$SubmitQuery),
-								_1: {ctor: '[]'}
-							}
-						},
-						{
-							ctor: '::',
-							_0: _elm_lang$html$Html$text('好緊張喔...'),
-							_1: {ctor: '[]'}
-						}),
-					_1: {
-						ctor: '::',
-						_0: _user$project$View$resultSection(_p4),
-						_1: {ctor: '[]'}
-					}
+					_0: _user$project$View$resultSection(_p5),
+					_1: {ctor: '[]'}
 				}
 			}
 		});
@@ -9187,13 +9254,10 @@ var _user$project$Update$decodePostQueryResponse = A2(
 	{
 		ctor: '::',
 		_0: 'posts',
-		_1: {
-			ctor: '::',
-			_0: 'title',
-			_1: {ctor: '[]'}
-		}
+		_1: {ctor: '[]'}
 	},
-	_elm_lang$core$Json_Decode$list(_elm_lang$core$Json_Decode$string));
+	_elm_lang$core$Json_Decode$list(
+		A2(_elm_lang$core$Json_Decode$field, 'title', _elm_lang$core$Json_Decode$string)));
 var _user$project$Update$postApi = function (query) {
 	return A2(_elm_lang$core$Basics_ops['++'], 'https://public-api.wordpress.com/rest/v1.1/sites/isthisbaokaka.wordpress.com/posts?fields=title&search=', query);
 };
@@ -9225,7 +9289,7 @@ var _user$project$Update$update = F2(
 					ctor: '_Tuple2',
 					_0: _elm_lang$core$Native_Utils.update(
 						state,
-						{queryString: _p1._0}),
+						{queryString: _p1._0, queryResult: _elm_lang$core$Maybe$Nothing}),
 					_1: _elm_lang$core$Platform_Cmd$none
 				};
 			case 'SubmitQuery':
