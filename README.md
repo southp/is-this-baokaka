@@ -12,7 +12,7 @@
 # 開發
 Prerequisities:
 
-* [elm](https://guide.elm-lang.org/install.html)
+* [elm](https://guide.elm-lang.org/install.html) 0.18.0
 * GNU make (其實沒有也行啦，就自己去跑elm-make就好了)
 
 編譯與執行：
