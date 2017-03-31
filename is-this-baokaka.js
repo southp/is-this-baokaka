@@ -9054,17 +9054,13 @@ var _user$project$View$queryStatusReportSection = function (_p0) {
 	var contentElement = function () {
 		if (_p1.isQuerying) {
 			return A2(
-				_elm_lang$html$Html$span,
+				_elm_lang$html$Html$div,
 				{
 					ctor: '::',
 					_0: _elm_lang$html$Html_Attributes$class('isthisbaokaka__status-report-loading-spinner'),
 					_1: {ctor: '[]'}
 				},
-				{
-					ctor: '::',
-					_0: _elm_lang$html$Html$text('Loading ... '),
-					_1: {ctor: '[]'}
-				});
+				{ctor: '[]'});
 		} else {
 			var _p2 = _p1.queryError;
 			if (_p2.ctor === 'Just') {

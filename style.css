@@ -60,3 +60,22 @@ h3 {
 .isthisbaokaka__negative-result-description {
     text-align: center;
 }
+
+.isthisbaokaka__status-report-wrapper {
+    width: 100%;
+}
+
+.isthisbaokaka__status-report-loading-spinner {
+    border: 12px solid #f3f3f3;
+    border-top: 12px solid rgba(174,109,54,0.4);
+    border-radius: 50%;
+    width: 16px;
+    height: 16px;
+    animation: spin 0.5s linear infinite;
+    margin: 0 auto;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}

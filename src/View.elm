@@ -64,7 +64,7 @@ queryStatusReportSection { isQuerying, queryError } =
     let
         contentElement =
             if isQuerying then
-               span [ class "isthisbaokaka__status-report-loading-spinner" ] [ text "Loading ... " ]
+               div [ class "isthisbaokaka__status-report-loading-spinner" ] []
             else
                 case queryError of
                     Just error ->
