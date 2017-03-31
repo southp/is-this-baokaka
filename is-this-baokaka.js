@@ -9065,16 +9065,42 @@ var _user$project$View$queryStatusReportSection = function (_p0) {
 			var _p2 = _p1.queryError;
 			if (_p2.ctor === 'Just') {
 				return A2(
-					_elm_lang$html$Html$span,
+					_elm_lang$html$Html$div,
 					{
 						ctor: '::',
-						_0: _elm_lang$html$Html_Attributes$class('isthisbaokaka__status-report-request-error'),
+						_0: _elm_lang$html$Html_Attributes$class('isthisbaokaka__status-report-request-error-wrapper'),
 						_1: {ctor: '[]'}
 					},
 					{
 						ctor: '::',
-						_0: _elm_lang$html$Html$text('There is an error!'),
-						_1: {ctor: '[]'}
+						_0: A2(
+							_elm_lang$html$Html$h3,
+							{
+								ctor: '::',
+								_0: _elm_lang$html$Html_Attributes$class('isthisbaokaka__status-report-request-error-heading'),
+								_1: {ctor: '[]'}
+							},
+							{
+								ctor: '::',
+								_0: _elm_lang$html$Html$text('不得了！伺服器出問題了！'),
+								_1: {ctor: '[]'}
+							}),
+						_1: {
+							ctor: '::',
+							_0: A2(
+								_elm_lang$html$Html$p,
+								{
+									ctor: '::',
+									_0: _elm_lang$html$Html_Attributes$class('isthisbaokaka__status-report-request-error-description'),
+									_1: {ctor: '[]'}
+								},
+								{
+									ctor: '::',
+									_0: _elm_lang$html$Html$text('這通常是暫時性的，請稍候片刻再試一次。'),
+									_1: {ctor: '[]'}
+								}),
+							_1: {ctor: '[]'}
+						}
 					});
 			} else {
 				return A2(

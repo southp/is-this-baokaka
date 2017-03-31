@@ -68,7 +68,11 @@ queryStatusReportSection { isQuerying, queryError } =
             else
                 case queryError of
                     Just error ->
-                        span [ class "isthisbaokaka__status-report-request-error" ] [ text "There is an error!" ]
+                        div [ class "isthisbaokaka__status-report-request-error-wrapper" ]
+                        [
+                            h3 [ class "isthisbaokaka__status-report-request-error-heading" ] [ text "不得了！伺服器出問題了！" ],
+                            p [ class "isthisbaokaka__status-report-request-error-description" ] [ text "這通常是暫時性的，請稍候片刻再試一次。" ]
+                        ]
                     Nothing -> span [] []
     in
         div [ class "isthisbaokaka__status-report-wrapper" ] [ contentElement ]

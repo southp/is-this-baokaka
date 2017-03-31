@@ -79,3 +79,12 @@ h3 {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
 }
+
+.isthisbaokaka__status-report-request-error-heading {
+    color: #dd2323;
+    text-align: center;
+}
+
+.isthisbaokaka__status-report-request-error-description {
+    text-align: center;
+}
