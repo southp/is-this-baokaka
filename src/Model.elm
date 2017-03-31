@@ -8,6 +8,8 @@ import Http
 type alias AppState =
     { queryString : String
     , queryResult : Maybe ( List String )
+    , isQuerying  : Bool
+    , queryError  : Maybe ( Http.Error )
     }
 
 type Msg =

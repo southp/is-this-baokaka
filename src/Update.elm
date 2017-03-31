@@ -15,16 +15,28 @@ import Json.Decode as Json
 import Model exposing ( .. )
 
 init : ( AppState, Cmd Msg )
-init = ( AppState "" Nothing, Cmd.none )
+init = ( AppState "" Nothing False Nothing, Cmd.none )
 
 update : Msg -> AppState -> ( AppState, Cmd Msg )
 update msg state =
     case msg of
         NoOp -> ( state, Cmd.none )
-        UpdateQueryString newQueryString -> ( { state | queryString = newQueryString, queryResult = Nothing }, Cmd.none )
-        SubmitQuery -> ( state, submitQuery state.queryString )
-        QuerySucceed items -> ( { state | queryResult = Just items }, Cmd.none )
-        QueryFail error -> ( state, Cmd.none )
+        UpdateQueryString newQueryString -> (
+            { state | queryString = newQueryString, queryResult = Nothing },
+            Cmd.none
+        )
+        SubmitQuery -> (
+            { state | isQuerying = True },
+            submitQuery state.queryString
+        )
+        QuerySucceed items -> (
+            { state | queryResult = Just items, isQuerying = False },
+            Cmd.none
+        )
+        QueryFail error -> (
+            { state | isQuerying = False, queryError = Just error },
+            Cmd.none
+        )
 
 -- exlude the post ID 92 since it is the announcement post.
 postApi : String -> String

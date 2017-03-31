@@ -32,7 +32,7 @@ view ( { queryString, queryResult } as state ) =
             , onInput UpdateQueryString
             ] []
         ],
-
+        queryStatusReportSection state,
         resultSection state
     ]
 
@@ -58,6 +58,21 @@ negativeResult queryString =
         , text "確認一下！"
         ]
     ]
+
+queryStatusReportSection : AppState -> Html Msg
+queryStatusReportSection { isQuerying, queryError } =
+    let
+        contentElement =
+            if isQuerying then
+               span [ class "isthisbaokaka__status-report-loading-spinner" ] [ text "Loading ... " ]
+            else
+                case queryError of
+                    Just error ->
+                        span [ class "isthisbaokaka__status-report-request-error" ] [ text "There is an error!" ]
+                    Nothing -> span [] []
+    in
+        div [ class "isthisbaokaka__status-report-wrapper" ] [ contentElement ]
+
 
 resultSection : AppState -> Html Msg
 resultSection { queryString, queryResult } =

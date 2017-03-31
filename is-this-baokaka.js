@@ -9033,9 +9033,9 @@ var _elm_lang$http$Http$StringPart = F2(
 	});
 var _elm_lang$http$Http$stringPart = _elm_lang$http$Http$StringPart;
 
-var _user$project$Model$AppState = F2(
-	function (a, b) {
-		return {queryString: a, queryResult: b};
+var _user$project$Model$AppState = F4(
+	function (a, b, c, d) {
+		return {queryString: a, queryResult: b, isQuerying: c, queryError: d};
 	});
 var _user$project$Model$QueryFail = function (a) {
 	return {ctor: 'QueryFail', _0: a};
@@ -9049,6 +9049,58 @@ var _user$project$Model$UpdateQueryString = function (a) {
 };
 var _user$project$Model$NoOp = {ctor: 'NoOp'};
 
+var _user$project$View$queryStatusReportSection = function (_p0) {
+	var _p1 = _p0;
+	var contentElement = function () {
+		if (_p1.isQuerying) {
+			return A2(
+				_elm_lang$html$Html$span,
+				{
+					ctor: '::',
+					_0: _elm_lang$html$Html_Attributes$class('isthisbaokaka__status-report-loading-spinner'),
+					_1: {ctor: '[]'}
+				},
+				{
+					ctor: '::',
+					_0: _elm_lang$html$Html$text('Loading ... '),
+					_1: {ctor: '[]'}
+				});
+		} else {
+			var _p2 = _p1.queryError;
+			if (_p2.ctor === 'Just') {
+				return A2(
+					_elm_lang$html$Html$span,
+					{
+						ctor: '::',
+						_0: _elm_lang$html$Html_Attributes$class('isthisbaokaka__status-report-request-error'),
+						_1: {ctor: '[]'}
+					},
+					{
+						ctor: '::',
+						_0: _elm_lang$html$Html$text('There is an error!'),
+						_1: {ctor: '[]'}
+					});
+			} else {
+				return A2(
+					_elm_lang$html$Html$span,
+					{ctor: '[]'},
+					{ctor: '[]'});
+			}
+		}
+	}();
+	return A2(
+		_elm_lang$html$Html$div,
+		{
+			ctor: '::',
+			_0: _elm_lang$html$Html_Attributes$class('isthisbaokaka__status-report-wrapper'),
+			_1: {ctor: '[]'}
+		},
+		{
+			ctor: '::',
+			_0: contentElement,
+			_1: {ctor: '[]'}
+		});
+};
 var _user$project$View$negativeResult = function (queryString) {
 	return A2(
 		_elm_lang$html$Html$div,
@@ -9170,12 +9222,12 @@ var _user$project$View$positiveResult = A2(
 			_1: {ctor: '[]'}
 		}
 	});
-var _user$project$View$resultSection = function (_p0) {
-	var _p1 = _p0;
-	var _p3 = _p1.queryString;
-	var _p2 = _p1.queryResult;
-	if (_p2.ctor === 'Just') {
-		return A2(_elm_lang$core$List$member, _p3, _p2._0) ? _user$project$View$positiveResult : _user$project$View$negativeResult(_p3);
+var _user$project$View$resultSection = function (_p3) {
+	var _p4 = _p3;
+	var _p6 = _p4.queryString;
+	var _p5 = _p4.queryResult;
+	if (_p5.ctor === 'Just') {
+		return A2(_elm_lang$core$List$member, _p6, _p5._0) ? _user$project$View$positiveResult : _user$project$View$negativeResult(_p6);
 	} else {
 		return A2(
 			_elm_lang$html$Html$div,
@@ -9183,8 +9235,9 @@ var _user$project$View$resultSection = function (_p0) {
 			{ctor: '[]'});
 	}
 };
-var _user$project$View$view = function (_p4) {
-	var _p5 = _p4;
+var _user$project$View$view = function (_p7) {
+	var _p8 = _p7;
+	var _p9 = _p8;
 	return A2(
 		_elm_lang$html$Html$div,
 		{
@@ -9249,8 +9302,12 @@ var _user$project$View$view = function (_p4) {
 					}),
 				_1: {
 					ctor: '::',
-					_0: _user$project$View$resultSection(_p5),
-					_1: {ctor: '[]'}
+					_0: _user$project$View$queryStatusReportSection(_p9),
+					_1: {
+						ctor: '::',
+						_0: _user$project$View$resultSection(_p9),
+						_1: {ctor: '[]'}
+					}
 				}
 			}
 		});
@@ -9302,7 +9359,9 @@ var _user$project$Update$update = F2(
 			case 'SubmitQuery':
 				return {
 					ctor: '_Tuple2',
-					_0: state,
+					_0: _elm_lang$core$Native_Utils.update(
+						state,
+						{isQuerying: true}),
 					_1: _user$project$Update$submitQuery(state.queryString)
 				};
 			case 'QuerySucceed':
@@ -9311,17 +9370,27 @@ var _user$project$Update$update = F2(
 					_0: _elm_lang$core$Native_Utils.update(
 						state,
 						{
-							queryResult: _elm_lang$core$Maybe$Just(_p1._0)
+							queryResult: _elm_lang$core$Maybe$Just(_p1._0),
+							isQuerying: false
 						}),
 					_1: _elm_lang$core$Platform_Cmd$none
 				};
 			default:
-				return {ctor: '_Tuple2', _0: state, _1: _elm_lang$core$Platform_Cmd$none};
+				return {
+					ctor: '_Tuple2',
+					_0: _elm_lang$core$Native_Utils.update(
+						state,
+						{
+							isQuerying: false,
+							queryError: _elm_lang$core$Maybe$Just(_p1._0)
+						}),
+					_1: _elm_lang$core$Platform_Cmd$none
+				};
 		}
 	});
 var _user$project$Update$init = {
 	ctor: '_Tuple2',
-	_0: A2(_user$project$Model$AppState, '', _elm_lang$core$Maybe$Nothing),
+	_0: A4(_user$project$Model$AppState, '', _elm_lang$core$Maybe$Nothing, false, _elm_lang$core$Maybe$Nothing),
 	_1: _elm_lang$core$Platform_Cmd$none
 };
 
