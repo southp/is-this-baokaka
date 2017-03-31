@@ -13,9 +13,9 @@
 Prerequisities:
 
 * [elm](https://guide.elm-lang.org/install.html)
-* GNU make
+* GNU make (其實沒有也行啦，就自己去跑elm-make就好了)
 
 編譯與執行：
 
-1. `make`: 編譯出`is-this-baokaka.js`，開啟根目錄下的`index.html`即可使用
-1. `make run`: 編譯並開啟`index.html`。因為我用了OSX的`open`，非OSX會無法使用
+1. `make`: 編譯出`is-this-baokaka.js`
+1. 開啟根目錄下的`index.html`即可使用
