@@ -5,7 +5,7 @@
 
 # 資料後端
 
-我很懶得去弄一個真的後端伺服器，所有資料都是在『[你今天寶咖咖了嗎？](https://isthisbaokaka.wordpress.com/)』這個WordPress.com網誌上。  
+我很懶得去弄一個真的後端伺服器，所有資料都是在『[你今天寶卡卡了嗎？](https://isthisbaokaka.wordpress.com/)』這個WordPress.com網誌上。  
 另外我也沒高竿到寫web scrapper自動幫我爬來這些資料，所有資料都是人工整理，詳情請見[上述網誌](https://isthisbaokaka.wordpress.com/)，
 歡迎各方大德貢獻資料。
 
