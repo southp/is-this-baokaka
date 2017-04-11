@@ -1,7 +1,7 @@
 general:
   branches:
     ignore:
-      - gh-page
+      - gh-pages
 
 dependencies:
   pre:
@@ -15,8 +15,8 @@ deployment:
   production:
     branch: master
     commands:
-      - git checkout gh-page
-      - git merge master
+      - git checkout gh-pages
+      - git merge origin/master
       - make
       - git add build/*
       - git commit -m "Deployed by CircleCI"
