@@ -1,5 +1,5 @@
 /elm-stuff
 *.sw?
 
-# built artifacts
-/build
+# gh-pages is a special branch for releasing, so built artifacts is not ignored here.
+# /build
