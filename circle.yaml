@@ -1,0 +1,19 @@
+general:
+  branches:
+    ignore:
+      - gh-page
+
+dependencies:
+  pre:
+    - npm install elm@0.18.0
+
+deployment:
+  production:
+    branch: master
+    commands:
+      - git checkout gh-page
+      - git merge master
+      - make
+      - git add build/*
+      - git commit -m "Deployed by CircleCI"
+      - git push origin HEAD
