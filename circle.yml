@@ -21,5 +21,5 @@ deployment:
       - git merge origin/master -m "Merge changes from master by CircleCI"
       - PATH=$PATH:./node_modules/.bin make
       - git add build/*
-      - git commit -m "Deployed by CircleCI"
+      - git commit -m "Deployed by CircleCI" --allow-empty
       - git push origin HEAD
