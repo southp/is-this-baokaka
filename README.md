@@ -1,5 +1,7 @@
 # 寶卡卡搜尋器
 
+[![CircleCI](https://circleci.com/gh/southp/is-this-baokaka/tree/gh-pages.svg?style=svg)](https://circleci.com/gh/southp/is-this-baokaka/tree/gh-pages)
+
 純使用請[前往本專案github page](https://southp.github.io/is-this-baokaka/)。
 快速搜尋是否為寶系列建商，像我一樣承受不了其霸氣的話就可以不用浪費時間了。
 

@@ -1,0 +1,25 @@
+general:
+  branches:
+    ignore:
+      - gh-pages
+
+dependencies:
+  pre:
+    - npm install elm@0.18.0
+
+test:
+  override:
+    - "true"
+
+deployment:
+  production:
+    branch: master
+    commands:
+      - git config --global user.email "$GH_EMAIL" > /dev/null 2>&1
+      - git config --global user.name "$GH_NAME" > /dev/null 2>&1
+      - git checkout gh-pages
+      - git merge origin/master -m "Merge changes from master by CircleCI"
+      - PATH=$PATH:./node_modules/.bin make
+      - git add build/*
+      - git commit -m "Deployed by CircleCI" --allow-empty
+      - git push origin HEAD
