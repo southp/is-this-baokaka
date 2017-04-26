@@ -9383,7 +9383,7 @@ var _user$project$Update$update = F2(
 					ctor: '_Tuple2',
 					_0: _elm_lang$core$Native_Utils.update(
 						state,
-						{isQuerying: true}),
+						{isQuerying: true, queryResult: _elm_lang$core$Maybe$Nothing, queryError: _elm_lang$core$Maybe$Nothing}),
 					_1: _user$project$Update$submitQuery(state.queryString)
 				};
 			case 'QuerySucceed':
