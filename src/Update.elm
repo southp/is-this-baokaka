@@ -26,7 +26,7 @@ update msg state =
             Cmd.none
         )
         SubmitQuery -> (
-            { state | isQuerying = True },
+            { state | isQuerying = True, queryResult = Nothing, queryError = Nothing },
             submitQuery state.queryString
         )
         QuerySucceed items -> (
