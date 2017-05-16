@@ -6,6 +6,7 @@ general:
 dependencies:
   pre:
     - npm install elm@0.18.0
+    - npm install uglify-js
 
 test:
   override:
@@ -19,7 +20,7 @@ deployment:
       - git config --global user.name "$GH_NAME" > /dev/null 2>&1
       - git checkout gh-pages
       - git merge origin/master -m "Merge changes from master by CircleCI"
-      - PATH=$PATH:./node_modules/.bin make
+      - PATH=$PATH:./node_modules/.bin make production
       - git add build/*
       - git commit -m "Deployed by CircleCI" --allow-empty
       - git push origin HEAD
