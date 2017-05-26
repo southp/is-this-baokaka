@@ -13,6 +13,7 @@ import Json.Decode as Json
 -- Internal dependencies
 -------------------------
 import Model exposing ( .. )
+import QueryApi exposing ( requestQuery )
 
 init : ( AppState, Cmd Msg )
 init = ( AppState "" Nothing False Nothing, Cmd.none )
@@ -38,10 +39,6 @@ update msg state =
             Cmd.none
         )
 
--- exclude the post ID 92 since it is the announcement post.
-postApi : String -> String
-postApi query = "https://public-api.wordpress.com/rest/v1.1/sites/isthisbaokaka.wordpress.com/posts?fields=title&exclude=92&search=" ++ query
-
 submitQuery : String -> Cmd Msg
 submitQuery queryString =
     let
@@ -50,8 +47,4 @@ submitQuery queryString =
                 Ok items -> QuerySucceed items
                 Err error -> QueryFail error
     in
-        Http.send processResult ( Http.get ( postApi queryString ) decodePostQueryResponse )
-
-decodePostQueryResponse : Json.Decoder ( List String )
-decodePostQueryResponse =
-    Json.at [ "posts" ] ( Json.list ( Json.field "title" Json.string ) )
+        requestQuery queryString processResult
