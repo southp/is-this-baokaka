@@ -4,23 +4,31 @@ module Update exposing
     )
 
 -------------------------
--- External dependencies
--------------------------
-import Http
-import Json.Decode as Json
-
--------------------------
 -- Internal dependencies
 -------------------------
 import Model exposing ( .. )
 import QueryApi exposing ( requestQuery )
 
 init : ( AppState, Cmd Msg )
-init = ( AppState "" Nothing False Nothing, Cmd.none )
-
+init = ( AppState
+    ""
+    Nothing
+    False
+    Nothing
+    Nothing
+    , Cmd.none )
 
 handleUpdateQueryString : String -> AppState -> ( AppState, Cmd Msg )
-handleUpdateQueryString newQueryString state = (
+handleUpdateQueryString newQueryString state =
+    if String.length( newQueryString ) == 1 then (
+        { state | queryString = newQueryString, queryResult = Nothing },
+        submitCandidateQuery newQueryString
+    )
+    else if String.length( newQueryString ) == 0 then (
+        { state | candidates = Nothing },
+        Cmd.none
+    )
+    else (
         { state | queryString = newQueryString, queryResult = Nothing },
         Cmd.none
     )
@@ -34,8 +42,16 @@ update msg state =
             { state | isQuerying = True, queryResult = Nothing, queryError = Nothing },
             submitQuery state.queryString
         )
+        SubmitCandidateQuery -> (
+            { state | isQuerying = True, candidates = Nothing, queryError = Nothing },
+            Cmd.none
+        )
         QuerySucceed items -> (
             { state | queryResult = Just items, isQuerying = False },
+            Cmd.none
+        )
+        QueryCandidateSucceeded items -> (
+            { state | candidates = Just items, isQuerying = False },
             Cmd.none
         )
         QueryFail error -> (
@@ -52,3 +68,13 @@ submitQuery queryString =
                 Err error -> QueryFail error
     in
         requestQuery queryString processResult
+
+submitCandidateQuery : String -> Cmd Msg
+submitCandidateQuery queryString =
+    let
+        processResult result =
+            case result of
+                Ok items -> QueryCandidateSucceeded items
+                Err error -> QueryFail error
+    in
+       requestQuery queryString processResult
