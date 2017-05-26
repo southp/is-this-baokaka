@@ -88,3 +88,14 @@ h3 {
 .isthisbaokaka__status-report-request-error-description {
     text-align: center;
 }
+
+.isthisbaokaka__candidate-list-wrapper {
+    margin-top: 4px;
+    background: white;
+}
+
+.isthisbaokaka__candidate-list {
+    list-style: none;
+    font-size: 1.2em;
+    font-weight: bold;
+}

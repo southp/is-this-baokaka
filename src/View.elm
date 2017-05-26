@@ -32,9 +32,25 @@ view ( { queryString, queryResult } as state ) =
             , onInput UpdateQueryString
             ] []
         ],
+        candidateSection state,
         queryStatusReportSection state,
         resultSection state
     ]
+
+candidateList : List String -> Html Msg
+candidateList candidates =
+    ul [ class "isthisbaokaka__candidate-list" ]
+    ( List.map ( \candidate -> li [ class "isthisbaokaka__candidate-list-item" ] [ text candidate ] ) candidates )
+
+candidateSection : AppState -> Html Msg
+candidateSection { candidates } =
+    case candidates of
+        Just items ->
+            if List.length items > 0 then
+                div [ class "isthisbaokaka__candidate-list-wrapper" ] [ candidateList items ]
+            else
+                text ""
+        Nothing -> text ""
 
 positiveResult : Html Msg
 positiveResult =
