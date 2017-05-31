@@ -21,7 +21,8 @@ view ( { queryString, queryResult } as state ) =
         h2 [ class "isthisbaokaka__heading-text" ] [ text "這是寶卡卡嗎？" ],
 
         Html.form
-        [ action "#"
+        [ class "isthisbaokaka__input-form"
+        , action "#"
         , onSubmit SubmitQuery ]
         [
             input
