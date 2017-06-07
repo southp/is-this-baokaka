@@ -6,7 +6,11 @@ module View exposing ( view )
 import Html exposing ( .. )
 import Html.Attributes exposing ( .. )
 import Html.Events exposing ( .. )
+import HtmlParser as HtmlParser
+import HtmlParser.Util exposing ( toVirtualDom )
+
 import List
+import Regex exposing ( .. )
 
 -------------------------
 -- Internal dependencies
@@ -38,17 +42,27 @@ view ( { queryString, queryResult } as state ) =
         resultSection state
     ]
 
-candidateList : List String -> Html Msg
-candidateList candidates =
-    ul [ class "isthisbaokaka__candidate-list" ]
-    ( List.map ( \candidate -> li [ class "isthisbaokaka__candidate-list-item" ] [ text candidate ] ) candidates )
+highlightText : String -> String -> List ( Html Msg )
+highlightText keyword string =
+    let
+        highlight { match } = "<span class=\"isthisbaokaka__candidate-list-item-highlight\">" ++ match ++ "</span>"
+    in
+        toVirtualDom ( HtmlParser.parse ( replace All ( regex keyword ) highlight string ) )
+
+candidateList : String -> List String -> Html Msg
+candidateList queryString candidates =
+    let
+        candidateListItem candidate = li [ class "isthisbaokaka__candidate-list-item" ] ( highlightText queryString candidate )
+    in
+        ul [ class "isthisbaokaka__candidate-list" ]
+        ( List.map candidateListItem candidates )
 
 candidateSection : AppState -> Html Msg
-candidateSection { candidates } =
+candidateSection { queryString, candidates } =
     case candidates of
         Just items ->
             if List.length items > 0 then
-                div [ class "isthisbaokaka__candidate-list-wrapper" ] [ candidateList items ]
+                div [ class "isthisbaokaka__candidate-list-wrapper" ] [ candidateList queryString items ]
             else
                 text ""
         Nothing -> text ""
