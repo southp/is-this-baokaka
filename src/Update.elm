@@ -39,15 +39,27 @@ update msg state =
         NoOp -> ( state, Cmd.none )
         UpdateQueryString newQueryString -> handleUpdateQueryString newQueryString state
         UpdateAndSubmit newQueryString -> (
-            { state | queryString = newQueryString, isQuerying = True, queryResult = Nothing, queryError = Nothing, candidates = Nothing },
+            { state | queryString = newQueryString
+            , isQuerying = True
+            , queryResult = Nothing
+            , queryError = Nothing
+            , candidates = Nothing
+            },
             submitQuery newQueryString
         )
         SubmitQuery -> (
-            { state | isQuerying = True, queryResult = Nothing, queryError = Nothing, candidates = Nothing },
+            { state | isQuerying = True
+            , queryResult = Nothing
+            , queryError = Nothing
+            , candidates = Nothing
+            },
             submitQuery state.queryString
         )
         SubmitCandidateQuery -> (
-            { state | isQuerying = True, candidates = Nothing, queryError = Nothing },
+            { state | isQuerying = True
+            , candidates = Nothing
+            , queryError = Nothing
+            },
             Cmd.none
         )
         QuerySucceed items -> (
