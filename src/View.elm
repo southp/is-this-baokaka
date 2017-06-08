@@ -34,6 +34,7 @@ view ( { queryString, queryResult } as state ) =
             , type_ "text"
             , placeholder "請輸入建商大名..."
             , autofocus True
+            , value queryString
             , onInput UpdateQueryString
             ] []
         ],
@@ -52,7 +53,10 @@ highlightText keyword string =
 candidateList : String -> List String -> Html Msg
 candidateList queryString candidates =
     let
-        candidateListItem candidate = li [ class "isthisbaokaka__candidate-list-item" ] ( highlightText queryString candidate )
+        candidateListItem candidate = li
+            [ class "isthisbaokaka__candidate-list-item"
+            , onClick ( UpdateQueryString candidate )
+            ] ( highlightText queryString candidate )
     in
         ul [ class "isthisbaokaka__candidate-list" ]
         ( List.map candidateListItem candidates )
