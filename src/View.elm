@@ -55,7 +55,7 @@ candidateList queryString candidates =
     let
         candidateListItem candidate = li
             [ class "isthisbaokaka__candidate-list-item"
-            , onClick ( UpdateQueryString candidate )
+            , onClick ( UpdateAndSubmit candidate )
             ] ( highlightText queryString candidate )
     in
         ul [ class "isthisbaokaka__candidate-list" ]

@@ -16,6 +16,7 @@ type alias AppState =
 type Msg =
     NoOp
     | UpdateQueryString String
+    | UpdateAndSubmit String
     | SubmitQuery
     | SubmitCandidateQuery
     | QueryCandidateSucceeded ( List String )

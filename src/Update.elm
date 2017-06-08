@@ -25,7 +25,7 @@ handleUpdateQueryString newQueryString state =
         submitCandidateQuery newQueryString
     )
     else if String.length( newQueryString ) == 0 then (
-        { state | candidates = Nothing },
+        { state | queryString = newQueryString, candidates = Nothing },
         Cmd.none
     )
     else (
@@ -38,8 +38,12 @@ update msg state =
     case msg of
         NoOp -> ( state, Cmd.none )
         UpdateQueryString newQueryString -> handleUpdateQueryString newQueryString state
+        UpdateAndSubmit newQueryString -> (
+            { state | queryString = newQueryString, isQuerying = True, queryResult = Nothing, queryError = Nothing, candidates = Nothing },
+            submitQuery newQueryString
+        )
         SubmitQuery -> (
-            { state | isQuerying = True, queryResult = Nothing, queryError = Nothing },
+            { state | isQuerying = True, queryResult = Nothing, queryError = Nothing, candidates = Nothing },
             submitQuery state.queryString
         )
         SubmitCandidateQuery -> (
