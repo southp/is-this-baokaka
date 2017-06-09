@@ -6,17 +6,40 @@ module View exposing ( view )
 import Html exposing ( .. )
 import Html.Attributes exposing ( .. )
 import Html.Events exposing ( .. )
+import HtmlParser as HtmlParser
+import HtmlParser.Util exposing ( toVirtualDom )
+import Json.Decode as Json
+
+import Array as Array exposing ( .. )
 import List
+import Regex exposing ( .. )
+
+import Debug
 
 -------------------------
 -- Internal dependencies
 -------------------------
 import Model exposing ( .. )
 
+keyEventHandler : Attribute Msg
+keyEventHandler =
+    let
+        upAndDown code =
+            if code == 38 then
+                DecreaseCandidateIndex
+            else if code == 40 then
+                IncreaseCandidateIndex
+            else
+                NoOp
+    in
+        on "keyup" ( Json.map upAndDown keyCode )
+
 view : AppState -> Html Msg
 view ( { queryString, queryResult } as state ) =
     div
-    [ class "isthisbaokaka__main-wrapper" ]
+    [ class "isthisbaokaka__main-wrapper"
+    , keyEventHandler
+    ]
     [
         h2 [ class "isthisbaokaka__heading-text" ] [ text "這是寶卡卡嗎？" ],
 
@@ -30,6 +53,7 @@ view ( { queryString, queryResult } as state ) =
             , type_ "text"
             , placeholder "請輸入建商大名..."
             , autofocus True
+            , value queryString
             , onInput UpdateQueryString
             ] []
         ],
@@ -38,17 +62,30 @@ view ( { queryString, queryResult } as state ) =
         resultSection state
     ]
 
-candidateList : List String -> Html Msg
-candidateList candidates =
-    ul [ class "isthisbaokaka__candidate-list" ]
-    ( List.map ( \candidate -> li [ class "isthisbaokaka__candidate-list-item" ] [ text candidate ] ) candidates )
+highlightText : String -> String -> List ( Html Msg )
+highlightText keyword string =
+    let
+        highlight { match } = "<span class=\"isthisbaokaka__candidate-list-item-highlight\">" ++ match ++ "</span>"
+    in
+        toVirtualDom ( HtmlParser.parse ( replace All ( regex keyword ) highlight string ) )
+
+candidateList : String -> Array String -> Html Msg
+candidateList queryString candidates =
+    let
+        candidateListItem candidate = li
+            [ class "isthisbaokaka__candidate-list-item"
+            , onClick ( UpdateAndSubmit candidate )
+            ] ( highlightText queryString candidate )
+    in
+        ul [ class "isthisbaokaka__candidate-list" ]
+        ( Array.toList ( Array.map candidateListItem candidates ) )
 
 candidateSection : AppState -> Html Msg
-candidateSection { candidates } =
+candidateSection { queryString, candidates } =
     case candidates of
         Just items ->
-            if List.length items > 0 then
-                div [ class "isthisbaokaka__candidate-list-wrapper" ] [ candidateList items ]
+            if Array.length items > 0 then
+                div [ class "isthisbaokaka__candidate-list-wrapper" ] [ candidateList queryString items ]
             else
                 text ""
         Nothing -> text ""
