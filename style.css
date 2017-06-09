@@ -106,8 +106,18 @@ h3 {
     font-size: 1.2em;
     font-weight: bold;
     box-shadow: 0px 0px 12px 0px rgba(0,0,0,0.25);
+    padding-left: 0px;
 }
 
 .isthisbaokaka__candidate-list-item-highlight {
     color: red;
+}
+
+.isthisbaokaka__candidate-list-item {
+    cursor: pointer;
+    padding-left: 20px;
+}
+
+.isthisbaokaka__candidate-list-item:hover {
+    background-color: rgba(174,109,54,0.2);
 }
