@@ -35,6 +35,7 @@ handleUpdateQueryString newQueryString state =
         { state | queryString = newQueryString
         , candidates = Nothing
         , candidateIndex = 0
+        , queryResult = Nothing
         },
         Cmd.none
     )
